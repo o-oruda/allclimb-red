@@ -6,6 +6,7 @@
 - zustand
 - tanstack/react-query
 - react-router-dom
+- node-sass
 
 ### [TODO]
 
