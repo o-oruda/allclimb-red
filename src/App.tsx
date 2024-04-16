@@ -7,11 +7,13 @@ import Main from './pages/Main';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up" element={<SignUp />} />
-    </Routes>
+    <div className="wrap">
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+    </div>
   );
 }
 
