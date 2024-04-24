@@ -1,18 +1,27 @@
+# eslint + prettier VSCode 설정
+
+-   Vscode extensions 설치
+    1. esbenp.prettier-vscode
+    2. dbaeumer.vscode-eslint
+-   VSCode 설정 변경
+    1. [Ctrl] + [,] 또는 File - Preference - Settings
+    2. [Workspaces] 탭에서 Editor:Format on Save ✅
+
 # 2024-03-02 installed libraries (기록용)
 
-- react
-- typescript
-- axios
-- zustand
-- tanstack/react-query
-- react-router-dom
-- node-sass
+-   react
+-   typescript
+-   axios
+-   zustand
+-   tanstack/react-query
+-   react-router-dom
+-   node-sass
 
 ### [TODO]
 
-- eslint 설정
-- prettier 설정
-- 브랜치 전략 수립
+-   eslint 설정
+-   prettier 설정
+-   브랜치 전략 수립
 
 # Getting Started with Create React App
 
