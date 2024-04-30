@@ -15,7 +15,6 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/login/oauth2/kakao"  />
 
-
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </div>
