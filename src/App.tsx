@@ -10,7 +10,12 @@ function App() {
     <div className="wrap">
       <Routes>
         <Route path="/" element={<Main />} />
+        
+        {/* 로그인 화면 */}
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/login/oauth2/kakao"  />
+
+
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </div>

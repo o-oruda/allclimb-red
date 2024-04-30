@@ -1,8 +1,16 @@
 import React from "react";
+import { KAKAO_AUTH_URL } from "../../utils/oauth";
 
 const SignInPage = () => {
+    // 로그인 테스트 용도
+
+    const handleLogin = () => {
+        window.location.href = KAKAO_AUTH_URL
+    }
     return (
-        <>로그인 페이지 입니다.</>
+        <>
+            <button onClick={handleLogin}>카카오톡 로그인</button>
+        </>
     )
 }
 
