@@ -36,6 +36,7 @@
 -   react-router-dom
 -   node-sass
 -   classNames
+-   sass-loader
 
 ### [TODO]
 
