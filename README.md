@@ -26,7 +26,7 @@
     1. [Ctrl] + [,] 또는 File - Preference - Settings
     2. [Workspaces] 탭에서 Editor:Format on Save ✅
 
-# 2024-05-28 installed libraries (기록용)
+# 2024-06-02 installed libraries (기록용)
 
 -   react
 -   typescript
@@ -34,8 +34,10 @@
 -   zustand
 -   tanstack/react-query
 -   react-router-dom
+-   sass
 -   node-sass
 -   classNames
+-   types/classnames
 -   sass-loader
 
 ### [TODO]
