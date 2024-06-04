@@ -7,7 +7,23 @@ const cx = classNames.bind(styles);
 
 const NavBar = () => {
     return (
-        <>Main page</>
+        <div className={cx('navbar')}>
+            <div className={cx('navbar__box')}>
+                <div className={cx('navbar__left')}>
+                    <button type="button" className={cx('navbar__back-button')}>
+                        <span className="blind">뒤로가기</span>
+                    </button>
+                </div>
+
+                <div className={cx('navbar__center')}>
+
+                </div>
+
+                <div className={cx('navbar__right')}>
+
+                </div>
+            </div>
+        </div>
     )
 }
 
