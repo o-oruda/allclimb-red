@@ -2,6 +2,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding-bottom: 96px;
+  width: 100%;
 }
 
 .sign-up__skip-button {
@@ -87,7 +89,7 @@
   }
 }
 
-.sign-up-center-bottom {
+.sign-up-bottom {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -96,12 +98,13 @@
   padding: 0 20px 20px;
   width: 100%;
   transition: transform 0.2s ease-out;
+  background-color: #1e1f23;
 
-  &.sign-up-center-bottom--active {
+  &.sign-up-bottom--active {
     transform: translateY(0);
   }
 
-  .sign-up-center-bottom__button {
+  .sign-up-bottom__button {
     display: block;
     width: 100%;
     height: 56px;
@@ -110,5 +113,51 @@
     font-weight: 500;
     border-radius: 16px;
     background-color: #F5144D;
+  }
+}
+
+//검색
+.sign-up-search {
+  padding: 8px 0;
+
+  .sign-up-search__title {
+    padding: 0 24px;
+    line-height: 31px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .sign-up-search__box {
+    padding: 24px 16px 8px;
+  }
+}
+
+// 지역선택
+.sign-up-area {
+  padding: 51px 19px;
+
+  .sign-up-area__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .sign-up-area__item {
+      padding: 5px;
+    }
+
+    .sign-up-area__button {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1/1;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 16px;
+      background-color: #2D2F34;
+
+      &.sign-up-area__button--active {
+        box-shadow: inset 0 0 0 2px #F5144D;
+      }
+    }
   }
 }
