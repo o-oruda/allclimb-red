@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './SignUpPage.module.scss';
 import classNames from 'classnames/bind';
 import NavBar from '../../components/NavBar/NavBar';
+import Search from '../../components/Search/Search';
 import BottomModal from '../../components/Modal/BottomModal/BottomModal';
+import StepBar from '../../components/StepBar/StepBar';
 import PreferGround from './PreferGround';
-import { useSearchParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const SignUpPage = () => {
+	const [step, setStep] = useState(1);
+
 	return (
 		<>
 			<div className={cx('sign-up')}>
@@ -18,26 +21,7 @@ const SignUpPage = () => {
 					건너뛰기
 				</button>
 
-				<div className={cx('sign-up-page')}>
-					<h3 className="blind">질문 단계</h3>
-					{/* TODO [F/E] - 선택시 sign-up-page__step--active 추가 */}
-					<div
-						className={cx(
-							'sign-up-page__step',
-							'sign-up-page__step--active',
-						)}
-					>
-						<span className="blind">1단계</span>
-					</div>
-
-					<div className={cx('sign-up-page__step')}>
-						<span className="blind">2단계</span>
-					</div>
-
-					<div className={cx('sign-up-page__step')}>
-						<span className="blind">3단계</span>
-					</div>
-				</div>
+				<StepBar hiddenTitle="질문 단계" step={step} totalStep={3} />
 
 				{/* 관심있는 클라이밍장 선택 */}
 				<PreferGround />
@@ -144,8 +128,18 @@ const SignUpPage = () => {
 						언제 시작했나요?
 					</h2>
 				</div>
+
+				{/* TODO [F/E] - 하나라도 선택시 sign-up-area-bottom--active 추가 */}
+				<div className={cx('sign-up-bottom', 'sign-up-bottom--active')}>
+					<button
+						type="button"
+						className={cx('sign-up-bottom__button')}
+					>
+						다음
+					</button>
+				</div>
 			</div>
-			{/* <BottomModal>dsdd</BottomModal> */}
+			<BottomModal>d</BottomModal>
 		</>
 	);
 };
