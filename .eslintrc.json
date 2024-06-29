@@ -6,6 +6,8 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react", "@typescript-eslint", "prettier"],
 	"extends": [
+		"react-app",
+		"react-app/jest",
 		"airbnb",
 		"airbnb/hooks",
 		"plugin:import/errors",
