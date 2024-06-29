@@ -6,6 +6,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Search from '../../components/Search/Search';
 import BottomModal from '../../components/Modal/BottomModal/BottomModal';
 import StepBar from '../../components/StepBar/StepBar';
+import PreferGround from './PreferGround';
 
 const cx = classNames.bind(styles);
 
@@ -22,69 +23,8 @@ const SignUpPage = () => {
 
 				<StepBar hiddenTitle="질문 단계" step={step} totalStep={3} />
 
-				<h2 className={cx('sign-up__title')}>
-					평소 관심있던
-					<br />
-					클라이밍장은 어디인가요?
-				</h2>
-
-				<div className={cx('sign-up-center')}>
-					<ul className={cx('sign-up-center__list')}>
-						<li className={cx('sign-up-center__item')}>
-							{/* TODO [F/E] - 선택시 sign-up-center__button--active 추가 */}
-							<button
-								type="button"
-								className={cx(
-									'sign-up-center__button',
-									'sign-up-center__button--active',
-								)}
-							>
-								신촌담장
-							</button>
-						</li>
-
-						<li className={cx('sign-up-center__item')}>
-							<button
-								type="button"
-								className={cx('sign-up-center__button')}
-							>
-								온사이트 클라이밍
-							</button>
-						</li>
-
-						<li className={cx('sign-up-center__item')}>
-							<button
-								type="button"
-								className={cx('sign-up-center__button')}
-							>
-								락랜드클라이밍
-							</button>
-						</li>
-					</ul>
-
-					<button
-						type="button"
-						className={cx(
-							'sign-up-center__button',
-							'sign-up-center__button--plus',
-						)}
-					>
-						직접추가
-					</button>
-				</div>
-
-				{/* TODO [F/E] - 검색 */}
-				<div className={cx('sign-up-search')}>
-					<h3 className={cx('sign-up-search__title')}>
-						관심있는 클라이밍 장을
-						<br />
-						추가해보세요!
-					</h3>
-
-					<div className={cx('sign-up-search__box')}>
-						<Search />
-					</div>
-				</div>
+				{/* 관심있는 클라이밍장 선택 */}
+				<PreferGround />
 
 				{/* TODO [F/E] - 활동지역 선택  */}
 				<h2 className={cx('sign-up__title')}>
