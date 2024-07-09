@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import styles from '../SignUpPage.module.scss';
 import classNames from 'classnames/bind';
 import { Select } from 'models/common';
+import useSignUpStore from 'store/pages/signUpStore';
 
 const cx = classNames.bind(styles);
 
@@ -26,10 +27,20 @@ const ActivityArea = () => {
 	// 선택된 활동지역 데이터
 	const [selectedArea, setSelectedArea] = useState<string>('');
 
+	const { step, updateStep, updateSignUpState } = useSignUpStore();
+
 	/**
-	 * 클릭 이벤트
+	 * [활동지역] 클릭 이벤트
 	 */
 	const onClick = useCallback((area: string) => setSelectedArea(area), []);
+
+	/**
+	 * [다음] 클릭 이벤트
+	 */
+	const nextStep = useCallback(() => {
+		updateSignUpState(selectedArea);
+		updateStep(step + 1);
+	}, [selectedArea]);
 
 	return (
 		<>
@@ -66,7 +77,11 @@ const ActivityArea = () => {
 					'sign-up-bottom--active': !!selectedArea,
 				})}
 			>
-				<button type="button" className={cx('sign-up-bottom__button')}>
+				<button
+					type="button"
+					className={cx('sign-up-bottom__button')}
+					onClick={nextStep}
+				>
 					다음
 				</button>
 			</div>
