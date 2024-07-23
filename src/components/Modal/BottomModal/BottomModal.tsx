@@ -6,11 +6,32 @@ import useModalStore from 'store/components/modalStore';
 
 const cx = classNames.bind(styles);
 
+// 컬러타입
+enum EColorType {
+	// 회색~
+	Gray = 'gray',
+}
+
+// 바텀 Props
 type BottomModalProps = {
+	// 컨텐츠
 	children: React.ReactNode;
+
+	// 클래스명
+	className?: string;
+
+	// 컬러타입
+	colorType?: EColorType;
 };
 
-const BottomModal: React.FC<BottomModalProps> = ({ children }) => {
+/**
+ * 바텀 팝업
+ */
+const BottomModal: React.FC<BottomModalProps> = ({
+	children,
+	className,
+	colorType,
+}) => {
 	const { isOpen, closeModal } = useModalStore();
 
 	if (!isOpen) return null;

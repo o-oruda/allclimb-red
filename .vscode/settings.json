@@ -1,9 +1,10 @@
 {
-    "eslint.workingDirectories": [ // 보통 이렇게 디렉토리 설정을 안해서 자동고침이 안된다
-        {
-        "mode": "auto"
-        }
-    ],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+	"eslint.workingDirectories": [
+		// 보통 이렇게 디렉토리 설정을 안해서 자동고침이 안된다
+		{
+			"mode": "auto"
+		}
+	],
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true
 }
