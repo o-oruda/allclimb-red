@@ -2,32 +2,21 @@ import classNames from 'classnames/bind';
 
 import styles from '../SignUpPage.module.scss';
 
-import { useEffect, useState } from 'react';
 import useToggleBadge from './hooks/useToggleBadge';
 import Badge from 'components/Badge';
-import Search from 'components/Search';
 import { useSearchParams } from 'react-router-dom';
-import BottomModal from 'components/Modal/BottomModal/BottomModal';
 import useModalStore from 'store/components/modalStore';
+import GroundAddModal from './GroundAddModal/GroundAddModal';
+import useSignUpStore from 'store/pages/signUpStore';
 
 const cx = classNames.bind(styles);
 
-const defaultGroundList = [
-	'신촌담장',
-	'온사이트클라이밍',
-	'손상원클라이밍 강남점',
-	'허브클라이밍',
-	'치즈클라이밍',
-	'몽키즈',
-	'크래커클라이밍',
-];
-
 const PreferGround = () => {
-	const [groundList, setGroundList] = useState<string[]>(defaultGroundList);
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const { activeGround, toggleBadge } = useToggleBadge();
 	const { openModal } = useModalStore();
+	const { gymList, customGymList } = useSignUpStore();
 
 	return (
 		<>
@@ -39,9 +28,8 @@ const PreferGround = () => {
 
 			<div className={cx('sign-up-center')}>
 				<ul className={cx('sign-up-center__list')}>
-					{groundList.map((ground: string) => (
+					{gymList.map((ground: string) => (
 						<li className={cx('sign-up-center__item')} key={ground}>
-							{/* TODO [F/E] - 선택시 sign-up-center__button--active 추가 */}
 							<Badge
 								className={cx('sign-up-center__button', {
 									'sign-up-center__button--active':
@@ -50,6 +38,21 @@ const PreferGround = () => {
 								onClick={() => toggleBadge(ground)}
 							>
 								{ground}
+							</Badge>
+						</li>
+					))}
+					{customGymList?.map((customGym: string) => (
+						<li
+							className={cx('sign-up-center__item')}
+							key={customGym}
+						>
+							<Badge
+								className={cx(
+									'sign-up-center__button',
+									'sign-up-center__button--active',
+								)}
+							>
+								{customGym}
 							</Badge>
 						</li>
 					))}
@@ -66,28 +69,21 @@ const PreferGround = () => {
 				</Badge>
 			</div>
 
-			{/* TODO [F/E] - 검색 */}
-			<BottomModal>
-				<div className={cx('sign-up-search')}>
-					<h3 className={cx('sign-up-search__title')}>
-						관심있는 클라이밍 장을
-						<br />
-						추가해보세요!
-					</h3>
-
-					<div className={cx('sign-up-search__box')}>
-						<Search />
-					</div>
-				</div>
-			</BottomModal>
+			{/* 클라이밍장 직접 추가 모달 */}
+			<GroundAddModal />
 
 			<div
 				className={cx('sign-up-bottom', {
 					'sign-up-bottom--active':
-						Object.values(activeGround).includes(true),
+						Object.values(activeGround).includes(true) ||
+						customGymList?.length,
 				})}
 			>
-				<button type="button" className={cx('sign-up-bottom__button')}>
+				<button
+					type="button"
+					className={cx('sign-up-bottom__button')}
+					onClick={() => console.log(activeGround)}
+				>
 					다음
 				</button>
 			</div>

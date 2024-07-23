@@ -130,16 +130,15 @@ const SignUpPage = () => {
 				</div>
 
 				{/* TODO [F/E] - 하나라도 선택시 sign-up-area-bottom--active 추가 */}
-				<div className={cx('sign-up-bottom', 'sign-up-bottom--active')}>
+				{/* <div className={cx('sign-up-bottom', 'sign-up-bottom--active')}>
 					<button
 						type="button"
 						className={cx('sign-up-bottom__button')}
 					>
 						다음
 					</button>
-				</div>
+				</div> */}
 			</div>
-			<BottomModal>d</BottomModal>
 		</>
 	);
 };
