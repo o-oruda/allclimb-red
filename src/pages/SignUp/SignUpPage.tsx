@@ -15,6 +15,14 @@ const SignUpPage = () => {
 	const { step, updateStep, signUpState } = useSignUpStore();
 
 	/**
+	 * [뒤로가기] 버튼 이벤트
+	 */
+	const goBack = useCallback(
+		() => updateStep(step > 1 ? step - 1 : step),
+		[step],
+	);
+
+	/**
 	 * [건너뛰기] 클릭 이벤트
 	 */
 	const skipStep = useCallback(() => updateStep(step + 1), [step]);
@@ -31,7 +39,7 @@ const SignUpPage = () => {
 			<div className={cx('sign-up')}>
 				{step <= 3 && (
 					<>
-						<NavBar />
+						<NavBar goBack={goBack} />
 						<button
 							type="button"
 							className={cx('sign-up__skip-button')}
