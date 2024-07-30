@@ -4,19 +4,19 @@ import styles from '../SignUpPage.module.scss';
 
 import useToggleBadge from './hooks/useToggleBadge';
 import Badge from 'components/Badge';
-import { useSearchParams } from 'react-router-dom';
 import useModalStore from 'store/components/modalStore';
 import GroundAddModal from './GroundAddModal/GroundAddModal';
 import useSignUpStore from 'store/pages/signUpStore';
+import useManagePreferList from './hooks/useManagePreferList';
 
 const cx = classNames.bind(styles);
 
 const PreferGround = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
-
-	const { activeGround, toggleBadge } = useToggleBadge();
+	const { activeGym, toggleBadge } = useToggleBadge();
+	const { getActiveGymList } = useManagePreferList();
 	const { openModal } = useModalStore();
-	const { gymList, customGymList } = useSignUpStore();
+	const { gymList, customGymList, updateStep, updateSignUpState, step } =
+		useSignUpStore();
 
 	return (
 		<>
@@ -28,12 +28,13 @@ const PreferGround = () => {
 
 			<div className={cx('sign-up-center')}>
 				<ul className={cx('sign-up-center__list')}>
+					{/* 기본 클라이밍장 정보 */}
 					{gymList.map((ground: string) => (
 						<li className={cx('sign-up-center__item')} key={ground}>
 							<Badge
 								className={cx('sign-up-center__button', {
 									'sign-up-center__button--active':
-										activeGround[ground],
+										activeGym[ground],
 								})}
 								onClick={() => toggleBadge(ground)}
 							>
@@ -41,21 +42,24 @@ const PreferGround = () => {
 							</Badge>
 						</li>
 					))}
-					{customGymList?.map((customGym: string) => (
-						<li
-							className={cx('sign-up-center__item')}
-							key={customGym}
-						>
-							<Badge
-								className={cx(
-									'sign-up-center__button',
-									'sign-up-center__button--active',
-								)}
+
+					{/* 사용자 직접 추가 클라이밍장 정보 */}
+					{customGymList.length > 0 &&
+						customGymList.map((customGym: string) => (
+							<li
+								className={cx('sign-up-center__item')}
+								key={customGym}
 							>
-								{customGym}
-							</Badge>
-						</li>
-					))}
+								<Badge
+									className={cx(
+										'sign-up-center__button',
+										'sign-up-center__button--active',
+									)}
+								>
+									{customGym}
+								</Badge>
+							</li>
+						))}
 				</ul>
 
 				<Badge
@@ -75,14 +79,21 @@ const PreferGround = () => {
 			<div
 				className={cx('sign-up-bottom', {
 					'sign-up-bottom--active':
-						Object.values(activeGround).includes(true) ||
-						customGymList?.length,
+						Object.values(activeGym).includes(true) ||
+						customGymList.length,
 				})}
 			>
 				<button
 					type="button"
 					className={cx('sign-up-bottom__button')}
-					onClick={() => console.log(activeGround)}
+					onClick={() => {
+						const updateList = [
+							...getActiveGymList(activeGym),
+							...customGymList,
+						];
+						updateStep(step + 1);
+						updateSignUpState([...updateList]);
+					}}
 				>
 					다음
 				</button>

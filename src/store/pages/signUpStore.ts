@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 interface ISignUpData {
 	// 관심 암장
-	preferGround: string;
+	preferGround: string[];
 
 	// 활동지역
 	activityArea: string;
@@ -22,13 +22,13 @@ interface ISignUpState {
 	updateStep: (step: number) => void;
 
 	// 회원가입 선택 정보 업데이트
-	updateSignUpState: (newValue: string) => void;
+	updateSignUpState: (newValue: string | string[]) => void;
 
 	gymList: string[];
 	setGymList: (gymList: string[]) => void;
 
 	// 사용자 직접 추가 클라이밍장 목록
-	customGymList?: string[];
+	customGymList: string[];
 	setCustomGymList: (customList: string[]) => void;
 }
 
@@ -45,24 +45,29 @@ const defaultGroundList = [
 const useSignUpStore = create<ISignUpState>((set) => ({
 	step: 1,
 	signUpState: {
-		preferGround: '',
+		preferGround: [''],
 		activityArea: '',
 		careerDuration: '',
 	},
 	updateStep: (step: number) => set({ step }),
-	updateSignUpState: (newValue: string) =>
+	updateSignUpState: (newValue: string | string[]) =>
 		set((state) => ({
 			signUpState: {
 				...state.signUpState,
-				...(state.step === 1 && { preferGround: newValue }),
-				...(state.step === 2 && { activityArea: newValue }),
-				...(state.step === 3 && { careerDuration: newValue }),
+				...(state.step === 1 &&
+					Array.isArray(newValue) && { preferGround: newValue }),
+				...(state.step === 2 &&
+					typeof newValue === 'string' && { activityArea: newValue }),
+				...(state.step === 3 &&
+					typeof newValue === 'string' && {
+						careerDuration: newValue,
+					}),
 			},
 		})),
 
 	gymList: defaultGroundList,
 	setGymList: (gymList: string[]) => set({ gymList }),
-	customGymList: undefined,
+	customGymList: [],
 	setCustomGymList: (customGymList) => set({ customGymList }),
 }));
 

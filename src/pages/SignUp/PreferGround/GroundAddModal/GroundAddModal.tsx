@@ -1,14 +1,13 @@
-import Badge from 'components/Badge';
-import BottomModal from 'components/Modal/BottomModal/BottomModal';
 import Search from 'components/Search';
 
 import classNames from 'classnames/bind';
 import styles from 'pages/SignUp/SignUpPage.module.scss';
 import useSearchStore from 'store/components/searchStore';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useState } from 'react';
 import useSearchAutoComplete from '../hooks/useSearchAutoComplete';
 import useManagePreferList from '../hooks/useManagePreferList';
 import useModalStore from 'store/components/modalStore';
+import FullPageModal from 'components/Modal/FullPageModal/FullPageModal';
 
 const cx = classNames.bind(styles);
 
@@ -17,16 +16,12 @@ const GroundAddModal = () => {
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
 	const { matchResult } = useSearchAutoComplete();
-	const { searchValue } = useSearchStore();
+	const { searchValue, setSearchValue } = useSearchStore();
 	const { addPreferGround } = useManagePreferList();
 	const { closeModal } = useModalStore();
 
-	useEffect(() => {
-		console.log('matchResult', selectedTags);
-	}, [matchResult, selectedTags]);
-
 	return (
-		<BottomModal>
+		<FullPageModal>
 			<div className={cx('sign-up-search')}>
 				<h3 className={cx('sign-up-search__title')}>
 					관심있는 클라이밍 장을
@@ -102,6 +97,7 @@ const GroundAddModal = () => {
 					type="button"
 					className={cx('sign-up-bottom__button')}
 					onClick={() => {
+						setSearchValue('');
 						addPreferGround(selectedTags);
 						closeModal();
 					}}
@@ -109,7 +105,7 @@ const GroundAddModal = () => {
 					추가
 				</button>
 			</div>
-		</BottomModal>
+		</FullPageModal>
 	);
 };
 
