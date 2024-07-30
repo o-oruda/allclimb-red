@@ -33,27 +33,32 @@ const GroundAddModal = () => {
 					<Search />
 
 					{/* [TODO] 자동완성 div  */}
-					{searchValue && matchResult?.length > 0 && (
-						<div className={cx('sign-up-auto-search__box')}>
-							<ul>
-								{matchResult.map((ground) => {
-									return (
-										<li
-											key={ground}
-											onClick={() => {
-												setSelectedTags([
-													...selectedTags,
-													ground,
-												]);
-											}}
-										>
-											{ground}
-										</li>
-									);
-								})}
-							</ul>
-						</div>
-					)}
+					{searchValue &&
+						(matchResult?.length > 0 ? (
+							<div className={cx('sign-up-auto-search__box')}>
+								<ul>
+									{matchResult.map((ground) => {
+										return (
+											<li
+												key={ground}
+												onClick={() => {
+													setSelectedTags([
+														...selectedTags,
+														ground,
+													]);
+												}}
+											>
+												{ground}
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+						) : (
+							<div className={cx('sign-up-auto-search__box')}>
+								검색 결과가 없습니다
+							</div>
+						))}
 				</div>
 
 				<div className={cx('sign-up-search-result__box')}>

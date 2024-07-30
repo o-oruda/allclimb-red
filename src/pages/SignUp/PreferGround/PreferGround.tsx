@@ -5,7 +5,7 @@ import styles from '../SignUpPage.module.scss';
 import useToggleBadge from './hooks/useToggleBadge';
 import Badge from 'components/Badge';
 import useModalStore from 'store/components/modalStore';
-import GroundAddModal from './GroundAddModal/GroundAddModal';
+import GroundAddModal from './GroundAddModal';
 import useSignUpStore from 'store/pages/signUpStore';
 import useManagePreferList from './hooks/useManagePreferList';
 
